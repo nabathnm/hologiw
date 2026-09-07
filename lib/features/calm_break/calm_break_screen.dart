@@ -89,25 +89,42 @@ class _CalmBreakScreenState extends ConsumerState<CalmBreakScreen> with SingleTi
     final totalBreakSeconds = prefs.breakDuration * 60;
     final progress = totalBreakSeconds > 0 ? 1 - (_secondsLeft / totalBreakSeconds) : 1.0;
 
+    final isExpanding = _controller.status == AnimationStatus.forward;
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(32.0),
+          padding: const EdgeInsets.symmetric(horizontal: 28.0, vertical: 24.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              const SizedBox(height: 20),
+              // Header Title
               Text(
-                _isFinished ? 'Istirahat selesai' : 'Saatnya istirahat 🌿',
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 16),
-              Text(
-                _isFinished ? 'Siap melanjutkan?' : 'Tarik napas...\nHembuskan perlahan...',
+                _isFinished ? 'Istirahat Selesai! 🎉' : 'Saatnya Jeda & Bernapas 🌿',
+                style: const TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.w800,
+                  color: Color(0xFF1F2937),
+                ),
                 textAlign: TextAlign.center,
-                style: const TextStyle(fontSize: 18, color: Colors.black54, height: 1.5),
+              ),
+              const SizedBox(height: 12),
+              Text(
+                _isFinished
+                    ? 'Pikiranmu sudah segar kembali dan siap untuk langkah selanjutnya!'
+                    : (isExpanding ? 'Tarik napas perlahan... 🍃' : 'Hembuskan napas perlahan... 💨'),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: _isFinished ? const Color(0xFF15803D) : const Color(0xFFEA580C),
+                  fontWeight: FontWeight.w700,
+                  height: 1.4,
+                ),
               ),
               const Spacer(),
               
+              // Breathing Concentric Rings with Warm Sunset Glow
               if (!_isFinished && !prefs.reduceMotion)
                 AnimatedBuilder(
                   animation: _animation,
@@ -115,19 +132,39 @@ class _CalmBreakScreenState extends ConsumerState<CalmBreakScreen> with SingleTi
                     return Transform.scale(
                       scale: _animation.value,
                       child: Container(
-                        width: 100,
-                        height: 100,
+                        width: 140,
+                        height: 140,
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: Theme.of(context).colorScheme.primary.withOpacity(0.2),
+                          color: const Color(0xFFFFEDD5).withValues(alpha: 0.4),
+                          boxShadow: [
+                            BoxShadow(
+                              color: const Color(0xFFF97316).withValues(alpha: 0.2),
+                              blurRadius: 36,
+                              spreadRadius: 10,
+                            ),
+                          ],
                         ),
                         child: Center(
                           child: Container(
-                            width: 60,
-                            height: 60,
+                            width: 90,
+                            height: 90,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: Theme.of(context).colorScheme.primary.withOpacity(0.5),
+                              color: const Color(0xFFFDBA74).withValues(alpha: 0.6),
+                            ),
+                            child: Center(
+                              child: Container(
+                                width: 50,
+                                height: 50,
+                                decoration: const BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Color(0xFFF97316),
+                                ),
+                                child: const Center(
+                                  child: Icon(Icons.air_rounded, color: Colors.white, size: 24),
+                                ),
+                              ),
                             ),
                           ),
                         ),
@@ -137,31 +174,70 @@ class _CalmBreakScreenState extends ConsumerState<CalmBreakScreen> with SingleTi
                 ),
               
               if (_isFinished)
-                const Icon(Icons.check_circle_outline, size: 100, color: Colors.green),
+                Container(
+                  width: 120,
+                  height: 120,
+                  decoration: BoxDecoration(
+                    color: const Color(0xFFDCFCE7),
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.green.withValues(alpha: 0.2),
+                        blurRadius: 24,
+                        offset: const Offset(0, 8),
+                      ),
+                    ],
+                  ),
+                  child: const Center(
+                    child: Icon(Icons.check_circle_rounded, size: 68, color: Color(0xFF16A34A)),
+                  ),
+                ),
 
               const Spacer(),
               
               if (!_isFinished) ...[
-                LinearProgressIndicator(
-                  value: progress,
-                  backgroundColor: Colors.black12,
-                  color: Theme.of(context).colorScheme.primary,
-                  borderRadius: BorderRadius.circular(4),
+                // Timer Countdown Display
+                Text(
+                  '${_secondsLeft ~/ 60}:${(_secondsLeft % 60).toString().padLeft(2, '0')}',
+                  style: const TextStyle(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w800,
+                    color: Color(0xFF1F2937),
+                  ),
                 ),
-                const SizedBox(height: 16),
-                TextButton(
+                const SizedBox(height: 14),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: LinearProgressIndicator(
+                    value: progress,
+                    backgroundColor: const Color(0xFFFFEDD5),
+                    color: const Color(0xFFF97316),
+                    minHeight: 8,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                TextButton.icon(
                   onPressed: _finish,
-                  child: const Text('Lewati istirahat', style: TextStyle(color: Colors.black54)),
+                  icon: const Icon(Icons.skip_next_rounded),
+                  label: const Text(
+                    'Lewati Istirahat',
+                    style: TextStyle(color: Color(0xFF6B7280), fontWeight: FontWeight.w600),
+                  ),
                 )
               ] else ...[
                 SizedBox(
                   width: double.infinity,
-                  child: ElevatedButton(
+                  child: ElevatedButton.icon(
                     onPressed: _finish,
-                    child: const Text('Lanjutkan Belajar'),
+                    icon: const Icon(Icons.arrow_forward_rounded),
+                    label: const Text('Lanjutkan Belajar'),
+                    style: ElevatedButton.styleFrom(
+                      padding: const EdgeInsets.symmetric(vertical: 18),
+                    ),
                   ),
                 ),
-              ]
+              ],
+              const SizedBox(height: 16),
             ],
           ),
         ),

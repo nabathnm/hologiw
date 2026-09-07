@@ -10,7 +10,7 @@ import '../features/calm_break/calm_break_screen.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/storage_provider.dart';
 
-GoRouter createRouter(WidgetRef ref) {
+final routerProvider = Provider<GoRouter>((ref) {
   final storageService = ref.watch(storageServiceProvider);
   final isOnboardingCompleted = storageService.isOnboardingCompleted();
   
@@ -47,4 +47,4 @@ GoRouter createRouter(WidgetRef ref) {
       ),
     ],
   );
-}
+});

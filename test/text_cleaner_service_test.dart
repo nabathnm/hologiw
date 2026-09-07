@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:ruang_belajar_adaptif/core/services/text_cleaner_service.dart';
+import 'package:hologiw/core/services/text_cleaner_service.dart';
 
 void main() {
   late TextCleanerService cleaner;

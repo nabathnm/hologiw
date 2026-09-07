@@ -3,7 +3,9 @@ import 'package:uuid/uuid.dart';
 import '../models/learning_material.dart';
 import '../core/services/text_cleaner_service.dart';
 import '../core/services/chunking_service.dart';
+import '../core/services/ai_service.dart';
 import 'storage_provider.dart';
+import 'package:file_picker/file_picker.dart';
 
 final textCleanerProvider = Provider<TextCleanerService>((ref) => TextCleanerService());
 final chunkingProvider = Provider<ChunkingService>((ref) => ChunkingService());
@@ -36,6 +38,15 @@ class MaterialsNotifier extends Notifier<List<LearningMaterial>> {
 
     state = [...state, newMaterial];
     await _save();
+  }
+
+  Future<void> addMaterialFromFile(String title, PlatformFile file) async {
+    final aiService = AiService();
+    // 1. Process file via AI
+    final processedText = await aiService.processMaterialFile(file);
+    
+    // 2. Add via the normal pipeline (which cleans and chunks)
+    await addMaterial(title, processedText);
   }
 
   Future<void> updateProgress(String materialId, int chunkIndex) async {

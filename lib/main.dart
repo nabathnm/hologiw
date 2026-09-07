@@ -34,11 +34,11 @@ class RuangBelajarApp extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final router = createRouter(ref);
+    final router = ref.watch(routerProvider);
     final prefs = ref.watch(userPreferencesProvider);
 
     return MaterialApp.router(
-      title: 'Ruang Belajar Adaptif',
+      title: 'KeepUp!',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.getTheme(
         fontFamily: prefs.fontFamily,

@@ -13,11 +13,11 @@ class UserPreferences {
 
   UserPreferences({
     this.mode = LearningMode.focus,
-    this.fontFamily = 'System',
+    this.fontFamily = 'Lexend',
     this.fontSize = 20.0,
     this.letterSpacing = 0.5,
     this.lineHeight = 1.6,
-    this.backgroundTheme = 'Warm Cream',
+    this.backgroundTheme = 'Warm Peach',
     this.reduceMotion = false,
     this.focusDuration = 10,
     this.breakDuration = 3,
@@ -50,22 +50,22 @@ class UserPreferences {
   factory UserPreferences.defaultDyslexia() {
     return UserPreferences(
       mode: LearningMode.dyslexia,
-      fontFamily: 'OpenDyslexic',
+      fontFamily: 'Lexend',
       fontSize: 22.0,
       letterSpacing: 1.0,
       lineHeight: 1.8,
-      backgroundTheme: 'Warm Cream',
+      backgroundTheme: 'Warm Peach',
     );
   }
 
   factory UserPreferences.defaultFocus() {
     return UserPreferences(
       mode: LearningMode.focus,
-      fontFamily: 'System',
+      fontFamily: 'Lexend',
       fontSize: 20.0,
       letterSpacing: 0.5,
       lineHeight: 1.6,
-      backgroundTheme: 'Light Gray',
+      backgroundTheme: 'Warm Peach',
     );
   }
 }

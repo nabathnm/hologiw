@@ -6,10 +6,10 @@ class TextCleanerService {
     String text = input.replaceAll(RegExp(r'<[^>]*>'), '');
     
     // Remove markdown bold/italic
-    text = text.replaceAll(RegExp(r'\*\*([^*]+)\*\*'), r'$1');
-    text = text.replaceAll(RegExp(r'\*([^*]+)\*'), r'$1');
-    text = text.replaceAll(RegExp(r'__([^_]+)__'), r'$1');
-    text = text.replaceAll(RegExp(r'_([^_]+)_'), r'$1');
+    text = text.replaceAllMapped(RegExp(r'\*\*([^*]+)\*\*'), (match) => match.group(1)!);
+    text = text.replaceAllMapped(RegExp(r'\*([^*]+)\*'), (match) => match.group(1)!);
+    text = text.replaceAllMapped(RegExp(r'__([^_]+)__'), (match) => match.group(1)!);
+    text = text.replaceAllMapped(RegExp(r'_([^_]+)_'), (match) => match.group(1)!);
 
     // Remove repeated whitespace
     text = text.replaceAll(RegExp(r'[ \t]+'), ' ');
