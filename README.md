@@ -176,13 +176,7 @@ KeepUp! keeps secrets safe using Flutter's compile-time `--dart-define-from-file
 
 ### 5. Run the Application
 
-#### Option A: Using Visual Studio Code (Recommended)
-A preconfigured `.vscode/launch.json` is included in the project.
-1. Open the project folder in VS Code.
-2. Select **Run and Debug** (`Ctrl+Shift+D` or `Cmd+Shift+D`).
-3. Choose **KeepUp (Development)** and press **`F5`**.
-
-#### Option B: Using the Flutter CLI
+#### Option A: Using the Flutter CLI (Recommended)
 Specify the environment configuration file using `--dart-define-from-file`:
 
 ```bash
@@ -199,4 +193,9 @@ flutter run -d windows --dart-define-from-file=env.json
 flutter run -d android --dart-define-from-file=env.json
 ```
 
+#### Option B: Using Visual Studio Code
+A preconfigured `.vscode/launch.json` is included in the project.
+1. Open the project folder in VS Code.
+2. Select **Run and Debug** (`Ctrl+Shift+D` or `Cmd+Shift+D`).
+3. Choose **KeepUp (Development)** and press **`F5`**.
 
