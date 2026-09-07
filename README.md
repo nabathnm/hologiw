@@ -8,29 +8,6 @@
 
 ---
 
-## Table of Contents
-- [About the Project](#-about-the-project)
-- [Key Features](#-key-features)
-- [How It Works](#-how-it-works)
-- [Tech Stack](#-tech-stack)
-- [Project Structure](#-project-structure)
-- [Installation Guide](#-installation-guide)
-  - [Prerequisites](#1-prerequisites)
-  - [Clone the Repository](#2-clone-the-repository)
-  - [Install Dependencies](#3-install-dependencies)
-  - [Configure Environment Variables](#4-configure-environment-variables)
-  - [Run the Application](#5-run-the-application)
-- [Building for Production](#-building-for-production)
-  - [Web](#web)
-  - [Android (APK & App Bundle)](#android-apk--app-bundle)
-  - [Desktop (Windows)](#windows-desktop)
-  - [iOS](#ios)
-- [Testing & Quality Assurance](#-testing--quality-assurance)
-- [Security Guidelines](#-security-guidelines)
-- [Troubleshooting](#-troubleshooting)
-
----
-
 ## About the Project
 
 Traditional educational materials are often structured as dense, multi-page walls of text. For neurodivergent learners, this format poses major hurdles:
