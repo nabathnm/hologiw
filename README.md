@@ -1,16 +1,14 @@
-# KeepUp! 🚀
+# KeepUp! 
 
 > **Adaptive, distraction-free learning powered by AI — designed specifically for children and learners with ADHD and Dyslexia.**
 
 [![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev)
 [![Dart](https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev)
-[![Riverpod](https://img.shields.io/badge/Riverpod-2.x-blueviolet?style=for-the-badge)](https://riverpod.dev)
 [![Groq AI](https://img.shields.io/badge/AI-Groq%20Cloud-f55036?style=for-the-badge)](https://groq.com)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
 ---
 
-## 📖 Table of Contents
+## Table of Contents
 - [About the Project](#-about-the-project)
 - [Key Features](#-key-features)
 - [How It Works](#-how-it-works)
@@ -33,42 +31,39 @@
 
 ---
 
-## 🌟 About the Project
+## About the Project
 
 Traditional educational materials are often structured as dense, multi-page walls of text. For neurodivergent learners, this format poses major hurdles:
 - **ADHD Challenges:** Difficulty sustaining attention across long paragraphs, sensory overload, and frequent cognitive fatigue.
 - **Dyslexia Challenges:** Visual crowding, letter inversion/swapping, Scotopic Sensitivity (glare fatigue from harsh white backgrounds), and slow tracking.
 
-**KeepUp!** bridges this gap by transforming complex documents into an **adaptive, micro-learning experience**. It combines dyslexia-friendly typography and glare-free warm palettes with the **"One Screen, One Idea"** paradigm—breaking study sessions into bite-sized flashcards with built-in Pomodoro timers and guided calming breaks.
+**KeepUp!** bridges this gap by transforming complex documents into an **adaptive, micro-learning experience**. It combines dyslexia-friendly typography and glare-free warm palettes with the **"One Screen, One Idea"** paradigm, breaking study sessions into bite-sized flashcards with built-in Pomodoro timers and guided calming breaks.
 
 ---
 
-## ✨ Key Features
+## Key Features
 
-### 🧠 1. AI-Powered Material Chunking
-- Upload reading materials in **PDF, TXT, or CSV** format.
+### 1. AI-Powered Material Chunking
+- Upload reading materials in **PDF or TXT** format.
 - Powered by high-speed **Groq AI**, the system extracts key concepts and transforms them into concise, single-idea cards without losing context or clarity.
 
-### 👓 2. Dyslexia-Optimized Typography & Visuals
+### 2. Dyslexia-Optimized Typography & Visuals
 - **Lexend Typography:** Utilizes the evidence-based *Lexend* font family engineered to expand character apertures and reduce visual crowding.
 - **Anti-Glare Palettes:** Replaces harsh monitor white with soothing background tones such as **Warm Peach**, **Warm Cream**, **Soft Amber**, and **Soft Mint**.
 - **Adjustable Spacing:** Customizable font sizes (16–28px), line height, and letter tracking to suit individual reading preferences.
 
-### ⏱️ 3. ADHD Focus Sessions (Pomodoro Technique)
+### 3. ADHD Focus Sessions (Pomodoro Technique)
 - **One Screen, One Idea:** Each screen displays only one concept at a time, completely eliminating peripheral distractions.
 - **Visual Timers:** Gentle countdown timer rings with tactile duration presets (5, 10, 15, or 20 minutes) to foster achievable milestones.
 - **Intuitive Gestures:** Supports swipe gestures across touchscreens, trackpads, and mouse drag, along with accessible navigation arrows.
 
-### 🍃 4. Guided Calm Breaks
+### 4. Guided Calm Breaks
 - Integrated breathing intervals with glowing concentric ring animations ("Sunset Glow").
-- Step-by-step visual breathing pacing (*Inhale... Hold... Exhale*) to reset focus and prevent cognitive burnout.
-
-### 🤝 5. Unified Adaptive Onboarding
-- No forced binary diagnosis choices upon first launch. Both ADHD and dyslexia accommodations are enabled simultaneously by default, with full live preview customization available anytime.
+- Step-by-step visual breathing pacing to reset focus and prevent cognitive burnout.
 
 ---
 
-## 🔬 How It Works
+## How It Works
 
 ```mermaid
 graph TD
@@ -76,14 +71,14 @@ graph TD
     B --> C[Groq AI Simplification & Concept Splitter]
     C --> D[Chunking Service: 1-2 sentence flashcards]
     D --> E[Interactive Reader: Lexend + Anti-Glare]
-    E --> F[Pomodoro Focus Timer]
+    E --> F[Focus Timer]
     F --> G[Guided Calm Breathing Break]
     G --> E
 ```
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 | Layer | Technology |
 |---|---|
@@ -98,7 +93,7 @@ graph TD
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
 lib/
@@ -128,7 +123,7 @@ lib/
 
 ---
 
-## 💻 Installation Guide
+## Installation Guide
 
 Follow these steps to set up and run KeepUp! on your local development machine.
 
@@ -175,7 +170,7 @@ KeepUp! keeps secrets safe using Flutter's compile-time `--dart-define-from-file
      "GROQ_API_KEY": "gsk_your_actual_groq_api_key_here"
    }
    ```
-   > ⚠️ **Note:** `env.json` is included in `.gitignore` to prevent credentials from ever being committed to GitHub.
+   > **Note:** `env.json` is included in `.gitignore` to prevent credentials from ever being committed to GitHub.
    >
    > *Tip:* You can also set or change your Groq API Key anytime directly within the app under **Pengaturan (Settings)**.
 
@@ -204,82 +199,4 @@ flutter run -d windows --dart-define-from-file=env.json
 flutter run -d android --dart-define-from-file=env.json
 ```
 
----
-
-## 📦 Building for Production
-
-When building production release binaries, always pass the `--dart-define-from-file=env.json` flag so that the production build bundles the necessary configuration securely.
-
-### Web
-```bash
-flutter build web --dart-define-from-file=env.json --release
-```
-The compiled output will be generated in `build/web/`, ready to be hosted on Firebase Hosting, Vercel, or GitHub Pages.
-
-### Android (APK & App Bundle)
-- **Universal Release APK:**
-  ```bash
-  flutter build apk --dart-define-from-file=env.json --release
-  ```
-  Output: `build/app/outputs/flutter-apk/app-release.apk`
-
-- **Google Play Store App Bundle (AAB):**
-  ```bash
-  flutter build appbundle --dart-define-from-file=env.json --release
-  ```
-  Output: `build/app/outputs/bundle/release/app-release.aab`
-
-### Windows Desktop
-```bash
-flutter build windows --dart-define-from-file=env.json --release
-```
-Output: `build/windows/x64/runner/Release/`
-
-### iOS
-*(Requires macOS with Xcode installed)*
-```bash
-flutter build ipa --dart-define-from-file=env.json --release
-```
-
----
-
-## 🧪 Testing & Quality Assurance
-
-Ensure code quality and test coverage using standard Flutter toolchains:
-
-- **Run Static Analysis:**
-  ```bash
-  flutter analyze
-  ```
-  *(Expected: No issues found!)*
-
-- **Run Automated Unit Tests:**
-  ```bash
-  flutter test
-  ```
-  Runs tests for `chunking_service_test.dart` and `text_cleaner_service_test.dart`.
-
----
-
-## 🔒 Security Guidelines
-
-- **Never Commit Secrets:** The `.gitignore` file is pre-configured to ignore `env.json`, `.env`, and platform credential files.
-- **Git Push Protection:** If your git push is blocked due to secret scanning, make sure your git history does not contain hardcoded API tokens. Use `git reset` or remove cached credentials before pushing.
-- **On-Device Data:** User reading progress, preferences, and downloaded materials are stored locally on the device using `SharedPreferences`.
-
----
-
-## ❓ Troubleshooting
-
-| Issue | Solution |
-|---|---|
-| **"Groq API Key belum dikonfigurasi"** | Ensure `env.json` exists in the project root and contains a valid `"GROQ_API_KEY"`, or set it in the app's **Pengaturan** screen. |
-| **Web: Mouse drag gestures not swiping cards** | Ensure you are using the latest version of the app. A custom `ScrollConfiguration` is included to enable mouse and trackpad swipe gestures on web browsers. |
-| **AI returns FormatException / syntax error** | The `AiService` automatically strips `<think>` blocks from reasoning models. If an error persists, ensure your Groq quota has not been exceeded. |
-| **Missing dependencies after pull** | Run `flutter clean && flutter pub get` to refresh dependencies. |
-
----
-
-## 📄 License
-This project is open-source and licensed under the [MIT License](LICENSE).
 
